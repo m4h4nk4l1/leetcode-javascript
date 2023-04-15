@@ -34,5 +34,10 @@ Overall, in-place algorithms are an important concept in computer science and ar
 red with 0 , white with 1 and blue with 2 
 */
 var sortColors = function(nums) {
-    
+        let zero = 0,one = 0,two = 0;
+        for (let n of nums) {
+          n === 0 ? zero++ : n === 1 ? one++ : two++;}
+        for (let i = 0; i < nums.length; i++) {
+          i < zero ? (nums[i] = 0) : i < zero + one ? (nums[i] = 1) : (nums[i] = 2);}
+        return nums;
 };
