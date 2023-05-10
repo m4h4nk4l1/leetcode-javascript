@@ -1,26 +1,47 @@
-// Intuition
-// We can think of using two pointers ‘i’ and ‘j’, we move ‘j’ till we don’t get a number arr[j] which is different from arr[i]. As we got a unique number we will increase the i pointer and update its value by arr[j].
 
-// Approach
-// Take a variable i as 0;
-// Use a for loop by using a variable ‘j’ from 1 to length of the array.
-// If arr[j] != arr[i], increase ‘i’ and update arr[i] == arr[j].
-// After completion of the loop return i+1, i.e size of the array of unique elements.
-
-// Complexity
-// Time complexity:O(n)
-// Space complexity:O(1)
-// Code
-class Solution {
-    public int removeDuplicates(int[] arr) {
-        int i=0;
-        for(int j=1;j<arr.length;j++){
-            if(arr[i]!=arr[j]){
-                i++;
-                arr[i]=arr[j];
-            }
+// Solution 1 : Using Array splice method
+const removeDuplicates = (nums) => {
+    for (let i = 0; i < nums.length - 1; i++) {
+        if (nums[i] == nums[i + 1]) {
+            nums.splice(i + 1, 1);
+            i--;
         }
-        return i+1;
-        
     }
+};
+
+// Solution 2 : For loop with continue
+const removeDuplicates = (nums) => {
+    if (nums.length === 0) return 0;
+    let i = 0;
+    for (let j = 1; j < nums.length; j++) {
+        if (nums[j] === nums[i]) continue; // If the elements are equal then continue else copy the unique element by then to "i+1" position
+        nums[++i] = nums[j];
+    }
+    return i + 1;
+}
+
+// Solution 3 : For loop 
+const removeDuplicates = (nums) => {
+    if (nums.length === 0) return 0;
+    let i = 0;
+    for (let j = 1; j < nums.length; j++) {
+        if (nums[j] !== nums[i]) { //  If the elements are not equal then copy the unique element by then to "i+1" position
+            nums[++i] = nums[j];
+        }
+    }
+    return i + 1;
+}
+
+// Solution 4 :  While loop
+const removeDuplicates = (nums) => {
+    if (nums.length === 0) return 0;
+    let i = 0;
+    let j = 1;
+    while (j < nums.length) {
+        if (nums[j] !== nums[i]) {
+            nums[++i] = nums[j];
+        }
+        j++;
+    }
+    return i + 1;
 }
